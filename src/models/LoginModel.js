@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require("validator")
+const bcrypt = require("bcryptjs")
 
 const LoginSchema = new mongoose.Schema({
   email: { type: String, required: true },
@@ -15,6 +16,24 @@ class Login {
     this.user = null
   }
 
+  async login() {
+    this.valida()
+    if(this.errors.length>0) return;
+
+    const user = await LoginModel.findOne({email: this.body.email})
+    if(!user) {
+      this.errors.push("Este e-mail não está cadastrado")
+      return;
+    }
+
+    if(!bcrypt.compareSync(this.body.password, user.password)) {
+      this.errors.push("A senha está inválida")
+      return;
+    }
+
+    this.user = user;
+  }
+
   async register() {
     this.valida();
     if(this.errors.length>0) return;
@@ -22,6 +41,8 @@ class Login {
     await this.userExist();
     if(this.errors.length>0) return;
 
+    const salt = await bcrypt.genSalt();
+    this.body.password = await bcrypt.hash(this.body.password, salt)
     this.user = await LoginModel.create(this.body)
   }
 

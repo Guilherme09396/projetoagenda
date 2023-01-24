@@ -33,7 +33,7 @@
                     <h4>Faça seu login aqui</h4>
                     <p>Para acessar sua agenda telefônica, entre por aqui!</p>
                     
-                    <form>
+                    <form action="/login" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                         <div class="mb-3">
                             <labelclass="form-label">Email address</label>
