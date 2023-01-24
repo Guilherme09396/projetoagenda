@@ -12,29 +12,11 @@
                 <%-include("includes/messages")%>
             <%} else {%>
 
-                <h2 class="text-center">Faça login ou cadastre sua conta agora mesmo!</h2>
+                <h2 class="text-center">Faça login por aqui</h2>
                 <p class="text-center lead">Projeto agenda</p>
                 <%-include("./includes/messages")%>
     
                 <div class="row">
-                    <div class="col-lg my-5">
-                        <h4>Faça seu cadastro aqui</h4>
-                        <p>Caso ainda não tenha conta, 
-                            coloque os seus dados aqui</p>
-    
-                        <form action="/register" method="POST">
-                            <input type="hidden" name="_csrf" value="<%= csrfToken%>">
-                            <div class="mb-3">
-                                <label class="form-label">Email address</label>
-                                <input name="email" type="email" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <labelclass="form-label">Password</label>
-                                <input name="password" type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Criar conta</button>
-                        </form>
-                    </div>
                     <div class="col-lg my-5">
                         <h4>Faça seu login aqui</h4>
                         <p>Para acessar sua agenda telefônica, entre por aqui!</p>

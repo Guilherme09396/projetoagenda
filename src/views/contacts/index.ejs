@@ -1,0 +1,33 @@
+<%-include("../includes/head") %>
+<%-include("../includes/nav") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-5">
+            <h2 class="text-center">Seus contatos listados abaixo</h2>
+            <p class="text-center lead">Lorem Ipsum</p>
+            <%- include("../includes/messages")%>
+            <div class="row">
+                <table class="table my-3">
+                    <% contacts.forEach(contact => {%>
+                        <tr>
+                            <td><%=contact.name%></td>
+                            <td><%=contact.lastName%></td>
+                            <td><%=contact.email%></td>
+                            <td><%=contact.phone%></td>
+                            <td><a class="text-primary" href="/contact/edit/<%=contact._id%>">Editar</a></td>
+                            <td><a class="text-danger" href="/contact/delete/<%=contact._id%>">Excluir</a></td>
+                        </tr>
+                    <%})%>
+                    
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%-include("../includes/footer")%>

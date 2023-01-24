@@ -1,0 +1,47 @@
+<%-include("../includes/head") %>
+<%-include("../includes/nav", {navContact: true}) %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        
+        <div class="col-lg-8 my-5">
+            <h2 class="text-center">Cadastro de contatos</h2>
+            <p class="text-center lead">Projeto agenda</p>
+            <%-include("../includes/messages")%>
+
+            <div class="row">
+                <div class="col-lg my-2">
+                    <% if(user.name) {%>
+                        <form action="/contact/edit/<%=user._id%>" method="POST">
+                    <%} else {%>
+                        <form action="/contact/create" method="POST">
+                    <%}%>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input name="name" type="text" class="form-control" value="<%=user.name%>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last name</label>
+                            <input name="lastName" type="text" class="form-control" value="<%=user.lastName%>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">E-mail</label>
+                            <input name="email" type="text" class="form-control" value="<%=user.email%>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            <input name="phone" type="text" class="form-control" value="<%=user.phone%>">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%-include("../includes/footer")%>

@@ -44,14 +44,14 @@ module.exports = {
       req.flash("success", "Login efetuado com sucesso!")
       req.session.user = login.user
       req.session.save(() => {
-        return res.redirect("/contacts")
+        return res.redirect("/")
       })
     } catch (error) {
       return res.render("404")
     }
   },
   logout: async(req, res) => {
-    req.session.destroy();
+    await req.session.destroy();
     return res.redirect("/")
   },
   contacts: (req, res) => {
